@@ -1,0 +1,110 @@
+#include "Fivewin.ch"
+#include "FileIO.ch"
+
+* Programa: manipulação de impressoras do Windows
+* Data    : 06/04/2015
+
+STATIC cNomeImp, aImpres
+********************************************************************************
+FUNCTION MAIN()
+
+	LOCAL lSalva:= .f.
+	LOCAL oTxt
+	
+	* retorna vetor de impressoras disponiveis
+	aImpres:= aGetPrinters()	
+	
+	cNomeImp:= Pesquisa_Imp()
+	
+	
+	IF .NOT. EMPTY(cNomeImp)
+		 nPos:= ASCAN(aImpres, {|X| IF(X == cNomeImp, .t., .f.)})
+
+		 If nPos > 0
+		 	cNomeImp:= aImpres[nPos]
+		 Endif	
+	ENDIF
+	
+	DEFINE DIALOG oDlg RESOURCE "DLG1" TITLE "Manipulação de impressoras"
+	
+	
+	REDEFINE COMBOBOX oCb4001 VAR cNomeImp ITEMS aImpres ID 4001 OF oDlg UPDATE
+	
+	* salvar
+	REDEFINE BUTTON oBt4005 ID 4005 OF oDlg ACTION( lSalva:=.t., oDlg:End() )
+	* imprimir
+	REDEFINE BUTTON oBt4004 ID 4004 OF oDlg ACTION MsgRun("Imprimindo...", "Aguarde", {|| Imprimir()} )
+	* retornar
+	REDEFINE BUTTON oBt4003 ID 4003 OF oDlg ACTION oDlg:End() CANCEL
+	
+	ACTIVATE DIALOG oDlg CENTERED
+	
+	IF lSalva
+	
+	   IF FILE( CurDrive()+":/"+CurDir()+"/"+"Config.txt" )
+	   	DELETE FILE( CurDrive()+":/"+CurDir()+"/"+"Config.txt" )
+		ENDIF
+	   
+	   
+		oTxt:= TTxtFile():New( CurDrive()+":/"+CurDir()+"/"+"Config.txt")
+		oTxt:putStr(cNomeImp)
+		oTxt:End()
+		
+	ENDIF
+	
+	
+RETURN NIL
+
+********************************************************************************
+FUNCTION Pesquisa_Imp()
+	* le o nome da impressora gravada no arquivo
+	LOCAL cDevice:= ""
+	LOCAL oArq
+	
+	oArq:= TTxtFile():New( CurDrive()+":/"+CurDir()+"/"+"Config.txt")
+   oArq:Gotop()
+   cDevice:= oArq:ReadLine()
+	oArq:End()
+	
+RETURN cDevice
+
+********************************************************************************
+FUNCTION Imprimir()
+
+   
+	PRINTER oPrn NAME "Fivewin Report" TO cNomeImp
+   
+   DEFINE FONT oFon1 NAME "ARIAL" SIZE 0, -12  OF oPrn 
+ 
+   nRow      := 1
+   nPag      := 1
+
+	* Define Coordenadas de Impressão
+   mLarg := oFon1:nHeight
+   nTab  := oPrn:nHorzRes()/60
+	
+	nSpc  := (oPrn:nHorzRes()-(nTab)) / 60
+
+   nCls  := {nTab+(nSpc*001),;  // 
+             nTab+(nSpc*014),;  // 
+             nTab+(nSpc*035),;  // 
+             nTab+(nSpc*062),;  // 
+             nTab+(nSpc*089),;  // 
+             nTab+(nSpc*050),;  // 
+             nTab+(nSpc*090) }  // 
+ 
+	oPrn:SetPortrait()	
+	oPrn:StartPage()
+
+   FOR Y = 1 TO 10
+	   nRow++
+		oPrn:Say( nRow*mLarg, nCls[1], "Teste de impressão", oFon1 )
+   NEXT
+
+   
+   oPrn:EndPage()
+   
+	oPrn:End()
+   
+
+RETURN NIL

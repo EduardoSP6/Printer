@@ -1,0 +1,28 @@
+<!--
+################################################
+# xDevStudio Project - xdev@kssoftware.com.br  #
+# Created @ 06/04/2015 14:35:57                #
+#                                              #
+### Standard xDev TagList - Layout v1.5 ########
+-->
+<taglist>
+   <tag filename="C:\Users\Eduardo\Desktop\TESTPRINTER\MAIN.PRG" name="Imprimir" args=" " scope="PUBLIC" type="ptFunction" line="71">
+   <tag filename="C:\Users\Eduardo\Desktop\TESTPRINTER\MAIN.PRG" name="Pesquisa_Imp" args=" " scope="PUBLIC" type="ptFunction" line="58">
+   <tag filename="C:\Users\Eduardo\Desktop\TESTPRINTER\MAIN.PRG" name="MAIN" args=" " scope="PUBLIC" type="ptFunction" line="8">
+   <tag filename="C:\Bcc56\include\psapi.h" name="EnumPageFiles" args=" " scope="PUBLIC" type="ptConstant" line="304">
+   <tag filename="C:\Bcc56\include\psapi.h" name="PENUM_PAGE_FILE_CALLBACK" args=" " scope="PUBLIC" type="ptConstant" line="303">
+   <tag filename="C:\Bcc56\include\psapi.h" name="GetDeviceDriverFileName" args=" " scope="PUBLIC" type="ptConstant" line="225">
+   <tag filename="C:\Bcc56\include\psapi.h" name="PENUM_PAGE_FILE_CALLBACK" args=" " scope="PUBLIC" type="ptConstant" line="306">
+   <tag filename="C:\Bcc56\include\psapi.h" name="GetProcessImageFileName" args=" " scope="PUBLIC" type="ptConstant" line="329">
+   <tag filename="C:\Bcc56\include\psapi.h" name="GetProcessImageFileName" args=" " scope="PUBLIC" type="ptConstant" line="327">
+   <tag filename="C:\Bcc56\include\psapi.h" name="EnumPageFiles" args=" " scope="PUBLIC" type="ptConstant" line="307">
+   <tag filename="C:\Bcc56\include\psapi.h" name="GetDeviceDriverFileName" args=" " scope="PUBLIC" type="ptConstant" line="223">
+   <tag filename="C:\Bcc56\include\psapi.h" name="GetModuleFileNameEx" args=" " scope="PUBLIC" type="ptConstant" line="92">
+   <tag filename="C:\Bcc56\include\psapi.h" name="GetModuleFileNameEx" args=" " scope="PUBLIC" type="ptConstant" line="94">
+   <tag filename="C:\Bcc56\include\psapi.h" name="GetModuleBaseName" args=" " scope="PUBLIC" type="ptConstant" line="67">
+   <tag filename="C:\Bcc56\include\psapi.h" name="GetModuleBaseName" args=" " scope="PUBLIC" type="ptConstant" line="69">
+   <tag filename="C:\Bcc56\include\psapi.h" name="GetDeviceDriverBaseName" args=" " scope="PUBLIC" type="ptConstant" line="200">
+   <tag filename="C:\Bcc56\include\psapi.h" name="GetDeviceDriverBaseName" args=" " scope="PUBLIC" type="ptConstant" line="202">
+   <tag filename="C:\Bcc56\include\psapi.h" name="GetMappedFileName" args=" " scope="PUBLIC" type="ptConstant" line="169">
+   <tag filename="C:\Bcc56\include\psapi.h" name="GetMappedFileName" args=" " scope="PUBLIC" type="ptConstant" line="171">
+</taglist>

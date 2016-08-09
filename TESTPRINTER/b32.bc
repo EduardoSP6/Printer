@@ -1,0 +1,30 @@
+-I"C:\bcc56\include;C:\xhb804\include;C:\fwh804\include;;" +
+-L"C:\bcc56\lib;C:\bcc56\lib\psdk;C:\xhb804\lib;C:\fwh804\lib;;;;;" +
+-aa +
+-Gn -Tpe -s +
+c0w32.obj +    
+"C:\Users\Eduardo\Desktop\TESTPRINTER\OBJ\MAIN.obj", + 
+"C:\Users\Eduardo\Desktop\TESTPRINTER\TESTPRINTER.EXE", +   
+"C:\Users\Eduardo\Desktop\TESTPRINTER\TESTPRINTER.map", +   
+FiveHx.lib FiveHC.lib +
+rtl.lib +      
+vm.lib +       
+gtgui.lib + 
+lang.lib +     
+macro.lib +    
+rdd.lib +      
+codepage.lib + 
+dbfntx.lib +   
+dbffpt.lib +   
+hbsix.lib +    
+common.lib +   
+pp.lib +       
+"C:\xhb804\lib\dbfcdx.lib" +  
+"C:\xhb804\lib\pcrepos.lib" +  
+cw32.lib +     
+import32.lib + 
+nddeapi.lib +
+iphlpapi.lib +
+rasapi32.lib +
+,
+"C:\Users\Eduardo\Desktop\TESTPRINTER\TSTPRINTER.res" 

@@ -1,0 +1,84 @@
+#include "Fivewin.ch"
+#include "FileIO.ch"
+
+* Programa: manipulação de impressoras do Windows
+* Data    : 06/04/2015
+
+STATIC cNomeImp, aImpres
+********************************************************************************
+FUNCTION MAIN()
+
+	LOCAL lSalva:= .f.
+	LOCAL oTxt
+	
+	* retorna vetor de impressoras disponiveis
+	aImpres:= aGetPrinters()	
+	
+	cNomeImp:= Pesquisa_Imp()
+	
+	IF .NOT. EMPTY(cNomeImp)
+		cNomeImp:= ASCAN(aImpres, cNomeImp)
+	ENDIF
+	
+	DEFINE DIALOG oDlg RESOURCE "DLG1" TITLE "Manipulação de impressoras"
+	
+	
+	REDEFINE COMBOBOX oCb4001 VAR cNomeImp ITEMS aImpres ID 4001 OF oDlg UPDATE
+	
+	* salvar
+	REDEFINE BUTTON oBt4005 ID 4005 OF oDlg ACTION( lSalva:=.t., oDlg:End() )
+	* imprimir
+	REDEFINE BUTTON oBt4004 ID 4004 OF oDlg ACTION MsgRun("Imprimindo...", "Aguarde", {|| Imprimir()} )
+	* retornar
+	REDEFINE BUTTON oBt4003 ID 4003 OF oDlg ACTION oDlg:End() CANCEL
+	
+	ACTIVATE DIALOG oDlg CENTERED
+	
+	IF lSalva
+	
+	   IF FILE( CurDrive()+":/"+CurDir()+"/"+"Config.txt" )
+	   	DELETE FILE( CurDrive()+":/"+CurDir()+"/"+"Config.txt" )
+		ENDIF
+	   
+	   ? cNomeImp
+	   
+		oTxt:= TTxtFile():New( CurDrive()+":/"+CurDir()+"/"+"Config.txt")
+		oTxt:putStr(cNomeImp)
+		oTxt:End()
+		
+	ENDIF
+	
+	
+RETURN NIL
+
+********************************************************************************
+FUNCTION Pesquisa_Imp()
+	* le o nome da impressora gravada no arquivo
+	LOCAL cDevice:= ""
+	LOCAL oArq
+	
+	oArq:= TTxtFile():New( CurDrive()+":/"+CurDir()+"/"+"Config.txt")
+   oArq:Gotop()
+   cDevice:= oArq:ReadLine()
+	oArq:End()
+	
+RETURN cDevice
+
+********************************************************************************
+FUNCTION Imprimir()
+
+	oPrn:= TPRINTER():New("Fivewin Report", .f.)
+	
+	oPrn:cModel:= cNomeImp
+	
+	oPrn:StartPage()
+	oPrn:SetPortrait()	
+
+   oPrn:Say( 1, 1, "Teste de impressão")
+   
+   oPrn:EndPage()
+   
+	oPrn:End()
+   
+
+RETURN NIL
